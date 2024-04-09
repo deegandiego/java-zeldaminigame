@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
+import zeldaminigame.world.World;
+
 public class Player extends Rectangle {
     public int spd = 4; // player's speed
     public boolean right, up, down, left;
@@ -13,15 +15,15 @@ public class Player extends Rectangle {
     }
 
     public void move() {
-        if (right) {
+        if (right && World.isFree(x + spd, y)) {
             x += spd;
-        } else if (left) {
+        } else if (left && World.isFree(x - spd, y)) {
             x -= spd;
         }
 
-        if (up) {
+        if (up && World.isFree(x, y - spd)) {
             y -= spd;
-        } else if (down) {
+        } else if (down && World.isFree(x, y + spd)) {
             y += spd;
         }
     }
