@@ -22,10 +22,14 @@ public class Game extends Canvas implements Runnable {
         jf.setLocationRelativeTo(null);
         jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jf.setVisible(true);
+
+        new Thread(game).start();
     }
 
     @Override
     public void run() {
-        // TODO Auto-generated method stub
+        while(true) {
+            System.out.println("Chamando game looping.");
+        }
     }
 }
