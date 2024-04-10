@@ -33,7 +33,7 @@ public class World {
         for (Block b : blocks) {
             if (b.intersects(new Rectangle(x, y, 32, 32))) {
                 return false;
-            }  
+            }
         }
 
         return true;
