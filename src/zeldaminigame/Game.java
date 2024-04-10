@@ -11,6 +11,7 @@ import java.awt.image.BufferStrategy;
 import javax.swing.JFrame;
 
 import zeldaminigame.entities.Player;
+import zeldaminigame.resources.Spritesheet;
 import zeldaminigame.world.World;
 
 public class Game extends Canvas implements Runnable, KeyListener {
@@ -23,6 +24,8 @@ public class Game extends Canvas implements Runnable, KeyListener {
     public Game() {
         this.addKeyListener(this);
         this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
+
+        new Spritesheet();
 
         world = new World();
 

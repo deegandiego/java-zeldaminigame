@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
+import zeldaminigame.resources.Spritesheet;
 import zeldaminigame.world.World;
 
 public class Player extends Rectangle {
@@ -29,7 +30,6 @@ public class Player extends Rectangle {
     }
 
     public void render(Graphics g) {
-        g.setColor(new Color(21, 82, 24));
-        g.fillRect(x, y, width, height);
+        g.drawImage(Spritesheet.player_front, x, y, 32, 32, null);
     }
 }
