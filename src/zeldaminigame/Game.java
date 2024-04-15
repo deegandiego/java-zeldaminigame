@@ -15,15 +15,17 @@ import zeldaminigame.resources.Spritesheet;
 import zeldaminigame.world.World;
 
 public class Game extends Canvas implements Runnable, KeyListener {
-    public static int WIDTH = 480, HEIGHT = 480;
+    public static int WIDTH = 640, HEIGHT = 480;
 
     public Player player;
+
+    public static int SCALE = 1;
 
     public World world;
 
     public Game() {
         this.addKeyListener(this);
-        this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
+        this.setPreferredSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
 
         new Spritesheet();
 
@@ -38,9 +40,10 @@ public class Game extends Canvas implements Runnable, KeyListener {
 
         jf.add(game);
         jf.setTitle("Mini Zelda");
+        jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jf.pack();
         jf.setLocationRelativeTo(null);
-        jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        jf.setResizable(false);
         jf.setVisible(true);
 
         new Thread(game).start();
@@ -65,7 +68,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
         Graphics g = bs.getDrawGraphics();
 
         g.setColor(Color.BLACK);
-        g.fillRect(0, 0, WIDTH, HEIGHT);
+        g.fillRect(0, 0, WIDTH * SCALE, HEIGHT * SCALE);
 
         world.render(g);
 
