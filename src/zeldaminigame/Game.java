@@ -52,8 +52,8 @@ public class Game extends Canvas implements Runnable, KeyListener {
     // Método responsável pela lógica do jogo
     // (checar colisões, posições, inputs etc.)
     public void tick() {
-        // Atualiza a posição do jogador com base nas entradas do teclado
-        player.move();
+        // Atualiza o estado do jogador com base nas entradas do teclado
+        player.tick();
     }
 
     // Método responsável pela renderização gráfica do jogo
@@ -80,7 +80,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
     @Override
     public void run() {
         while (true) {
-            System.out.println("Chamando game looping.");
+            // System.out.println("Chamando game looping.");
             tick();
             render();
 
@@ -106,6 +106,10 @@ public class Game extends Canvas implements Runnable, KeyListener {
         } else if (e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_S) {
             player.down = true;
         }
+
+        if (e.getKeyCode() == KeyEvent.VK_Z) {
+            player.isShooting = true;
+        }
     }
 
     @Override
@@ -122,6 +126,9 @@ public class Game extends Canvas implements Runnable, KeyListener {
             player.down = false;
         }
 
+        if (e.getKeyCode() == KeyEvent.VK_Z) {
+            player.isShooting = false;
+        }
     }
 
     @Override

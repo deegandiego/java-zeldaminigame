@@ -2,7 +2,10 @@ package zeldaminigame.entities;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.util.ArrayList;
+import java.util.List;
 
+import zeldaminigame.abilities.Bullet;
 import zeldaminigame.resources.Spritesheet;
 import zeldaminigame.world.World;
 
@@ -14,18 +17,26 @@ public class Player extends Rectangle {
 
     public int curFrames = 0, targetFrames = 15; /* higher targetFrames = slower animation */
 
+    static public List<Bullet> bullets = new ArrayList<Bullet>();
+
+    public boolean isShooting = false;
+
+    public int dir = 1;
+
     public Player(int x, int y) {
         super(x, y, 32, 32);
     }
 
-    public void move() {
+    public void tick() {
         boolean isMoving = false;
         if (right && World.isFree(x + spd, y)) {
             isMoving = true;
             x += spd;
+            dir = 1;
         } else if (left && World.isFree(x - spd, y)) {
             isMoving = true;
             x -= spd;
+            dir = -1;
         }
 
         if (up && World.isFree(x, y - spd)) {
@@ -46,9 +57,22 @@ public class Player extends Rectangle {
                 }
             }
         }
+
+        if (isShooting) {
+            isShooting = false;
+            bullets.add(new Bullet(x, y, dir));
+        }
+
+        for (int i = 0; i < bullets.size(); i++) {
+            bullets.get(i).tick();
+        }
     }
 
     public void render(Graphics g) {
         g.drawImage(Spritesheet.playerFront[curAnimation], x, y, 32, 32, null);
+
+        for (int i = 0; i < bullets.size(); i++) {
+            bullets.get(i).render(g);
+        }
     }
 }
