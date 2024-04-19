@@ -28,8 +28,8 @@ public class Bullet extends Rectangle {
         }
     }
 
-    public void render(Graphics g) {
-        g.setColor(Color.YELLOW);
+    public void render(Graphics g, Color color) {
+        g.setColor(color);
         g.fillOval(x, y, width, height);
     }
 }

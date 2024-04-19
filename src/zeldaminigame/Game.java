@@ -7,9 +7,12 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JFrame;
 
+import zeldaminigame.entities.Enemy;
 import zeldaminigame.entities.Player;
 import zeldaminigame.resources.Spritesheet;
 import zeldaminigame.world.World;
@@ -23,6 +26,8 @@ public class Game extends Canvas implements Runnable, KeyListener {
 
     public World world;
 
+    public List<Enemy> enemies = new ArrayList<Enemy>();
+
     public Game() {
         this.addKeyListener(this);
         this.setPreferredSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
@@ -32,6 +37,8 @@ public class Game extends Canvas implements Runnable, KeyListener {
         world = new World();
 
         player = new Player(32, 32);
+
+        enemies.add(new Enemy(32, 32));
     }
 
     public static void main(String[] args) {
@@ -54,6 +61,10 @@ public class Game extends Canvas implements Runnable, KeyListener {
     public void tick() {
         // Atualiza o estado do jogador com base nas entradas do teclado
         player.tick();
+
+        for (int i = 0; i < enemies.size(); i++) {
+            enemies.get(i).tick();
+        }
     }
 
     // Método responsável pela renderização gráfica do jogo
@@ -73,6 +84,10 @@ public class Game extends Canvas implements Runnable, KeyListener {
         world.render(g);
 
         player.render(g);
+
+        for (int i = 0; i < enemies.size(); i++) {
+            enemies.get(i).render(g);
+        }
 
         bs.show();
     }

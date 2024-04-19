@@ -10,13 +10,13 @@ import zeldaminigame.abilities.Bullet;
 import zeldaminigame.resources.Spritesheet;
 import zeldaminigame.world.World;
 
-public class Player extends Rectangle {
-    public int spd = 4; // player's speed
-    public boolean right, up, down, left;
+public class Enemy extends Rectangle {
+    public int spd = 2;
+    public boolean right = true, up = false, down = false, left = false;
 
     public int curAnimation = 0;
 
-    public int curFrames = 0, targetFrames = 15; /* higher targetFrames = slower animation */
+    public int curFrames = 0, targetFrames = 15;
 
     static public List<Bullet> bullets = new ArrayList<Bullet>();
 
@@ -24,7 +24,7 @@ public class Player extends Rectangle {
 
     public int dir = 1;
 
-    public Player(int x, int y) {
+    public Enemy(int x, int y) {
         super(x, y, 32, 32);
     }
 
@@ -53,7 +53,7 @@ public class Player extends Rectangle {
             if (curFrames == targetFrames) {
                 curFrames = 0;
                 curAnimation++;
-                if (curAnimation == Spritesheet.playerFront.length) {
+                if (curAnimation == Spritesheet.enemyFront.length) {
                     curAnimation = 0;
                 }
             }
@@ -70,10 +70,10 @@ public class Player extends Rectangle {
     }
 
     public void render(Graphics g) {
-        g.drawImage(Spritesheet.playerFront[curAnimation], x, y, 32, 32, null);
+        g.drawImage(Spritesheet.enemyFront[curAnimation], x, y, 32, 32, null);
 
         for (int i = 0; i < bullets.size(); i++) {
-            bullets.get(i).render(g, Color.YELLOW);
+            bullets.get(i).render(g, Color.RED);
         }
     }
 }
