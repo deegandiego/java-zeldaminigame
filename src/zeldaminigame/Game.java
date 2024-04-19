@@ -20,7 +20,7 @@ import zeldaminigame.world.World;
 public class Game extends Canvas implements Runnable, KeyListener {
     public static int WIDTH = 640, HEIGHT = 480;
 
-    public Player player;
+    public static Player player;
 
     public static int SCALE = 1;
 

@@ -6,6 +6,7 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
 
+import zeldaminigame.Game;
 import zeldaminigame.abilities.Bullet;
 import zeldaminigame.resources.Spritesheet;
 import zeldaminigame.world.World;
@@ -20,6 +21,8 @@ public class Enemy extends Rectangle {
 
     static public List<Bullet> bullets = new ArrayList<Bullet>();
 
+    public boolean isMoving = false;
+
     public boolean isShooting = false;
 
     public int dir = 1;
@@ -28,25 +31,28 @@ public class Enemy extends Rectangle {
         super(x, y, 32, 32);
     }
 
-    public void tick() {
-        boolean isMoving = false;
-        if (right && World.isFree(x + spd, y)) {
+    public void chasePlayer() {
+        Player p = Game.player;
+
+        if (x < p.x && World.isFree(x + spd, y)) {
             isMoving = true;
             x += spd;
-            dir = 1;
-        } else if (left && World.isFree(x - spd, y)) {
+        } else if (x > p.x && World.isFree(x - spd, y)) {
             isMoving = true;
             x -= spd;
-            dir = -1;
         }
 
-        if (up && World.isFree(x, y - spd)) {
-            isMoving = true;
-            y -= spd;
-        } else if (down && World.isFree(x, y + spd)) {
+        if (y < p.y && World.isFree(x, y + spd)) {
             isMoving = true;
             y += spd;
+        } else if (y > p.y && World.isFree(x, y - spd)) {
+            isMoving = true;
+            y -= spd;
         }
+    }
+
+    public void tick() {
+        chasePlayer();
 
         if (isMoving) {
             curFrames++;

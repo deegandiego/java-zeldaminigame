@@ -28,6 +28,8 @@ public class World {
         for (int yy = 0; yy < Game.HEIGHT/32; yy++) {
             blocks.add(new Block(Game.WIDTH - 32, yy * 32));
         }
+
+        blocks.add(new Block(32*4, 32*7));
     }
 
     public static boolean isFree(int x, int y) {
