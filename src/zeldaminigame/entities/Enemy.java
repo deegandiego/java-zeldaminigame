@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import zeldaminigame.Game;
 import zeldaminigame.abilities.Bullet;
@@ -35,19 +36,27 @@ public class Enemy extends Rectangle {
         Player p = Game.player;
 
         if (x < p.x && World.isFree(x + spd, y)) {
-            isMoving = true;
-            x += spd;
+            if (new Random().nextInt(100) < 50) {
+                isMoving = true;
+                x += spd;
+            }
         } else if (x > p.x && World.isFree(x - spd, y)) {
-            isMoving = true;
-            x -= spd;
+            if (new Random().nextInt(100) < 50) {
+                isMoving = true;
+                x -= spd;
+            }
         }
 
         if (y < p.y && World.isFree(x, y + spd)) {
-            isMoving = true;
-            y += spd;
+            if (new Random().nextInt(100) < 50) {
+                isMoving = true;
+                y += spd;
+            }
         } else if (y > p.y && World.isFree(x, y - spd)) {
-            isMoving = true;
-            y -= spd;
+            if (new Random().nextInt(100) < 50) {
+                isMoving = true;
+                y -= spd;
+            }
         }
     }
 
