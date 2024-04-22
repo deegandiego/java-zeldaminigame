@@ -1,21 +1,11 @@
-# java-zeldaminigame
- A game development study in Java. Zelda-like inspired
+# JAVA ZELDA MINI GAME
 
-## Getting Started
+Este é um projeto de estudo para os primeiros passo em estudos de programação de jogos em Java.
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+### Guia rápido de Java com Visual Studio Code
 
-## Folder Structure
-
-The workspace contains two folders by default, where:
-
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
-
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
-
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
-
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+1. **Clone esse repositório** (ou simplesmente baixe o [projeto compactado](https://github.com/deegandiego/java-zeldaminigame/archive/refs/heads/main.zip)).
+2. **Instale o [Visual Studio Code](https://code.visualstudio.com/).**
+3. **Instale o [Java Development Kit (JDK)](https://www.oracle.com/java/technologies/javase-downloads.html).**
+4. **Instale o [Pacote de Extensões para Java](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack).**
+5. **Abra o diretório com o código usando o VSCode e execute o Java pelo Spring Boot Dashboard.**
